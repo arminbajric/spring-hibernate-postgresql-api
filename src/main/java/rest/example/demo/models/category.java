@@ -4,6 +4,8 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "category")
@@ -26,6 +28,7 @@ public class category {
     private String category;
     @Column(name="numberOfItemsInCategory")
     private int numberOfItemsInCategory;
-
+     @OneToMany(mappedBy = "category")
+    private Set<items> items;
 
 }

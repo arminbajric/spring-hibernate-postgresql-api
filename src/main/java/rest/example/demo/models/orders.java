@@ -36,5 +36,8 @@ public class orders {
     @OneToMany(mappedBy = "orders")
 
     private Set<order_details> order_details;
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 
 }

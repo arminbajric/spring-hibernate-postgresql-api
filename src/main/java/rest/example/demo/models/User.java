@@ -5,6 +5,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "users")
@@ -21,6 +23,7 @@ public class User {
 
     @Id
     @GeneratedValue(generator = "usersSequenceGenerator")
+
     @Column(name = "user_id")
     private Long id;
     @Column(name = "username",unique = true)
@@ -31,6 +34,8 @@ public class User {
     private String user_email;
     @Column(name = "date_of_registration")
     private Date date_of_registration;
+    @OneToMany(mappedBy = "users")
+    private Set<User> users;
 
     public User(){}
     public User(String username, String password) {

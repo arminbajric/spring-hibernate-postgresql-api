@@ -32,4 +32,7 @@ public class items {
     private String item_description;
     @Column(name = "item_price")
     private double item_price;
+    @ManyToOne
+    @JoinColumn(name = "category_id",nullable = false)
+    private category category;
 }
