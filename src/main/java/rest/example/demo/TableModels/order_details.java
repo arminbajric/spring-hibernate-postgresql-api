@@ -1,10 +1,9 @@
-package rest.example.demo.models;
+package rest.example.demo.TableModels;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Data
 @Entity

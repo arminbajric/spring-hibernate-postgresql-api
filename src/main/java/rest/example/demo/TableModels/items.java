@@ -1,4 +1,4 @@
-package rest.example.demo.models;
+package rest.example.demo.TableModels;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
