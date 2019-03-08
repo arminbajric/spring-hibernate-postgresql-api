@@ -4,7 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Entity
@@ -21,14 +21,51 @@ public class category {
     )
     @Id
     @GeneratedValue(generator = "categorySequenceGenerator")
-    @Column(name = "category_id")
-    private Long category_id;
+    @Column(name = "categoryId")
+    private Long categoryId;
 
-    @Column(name = "category_name")
-    private String category;
+    @Column(name = "categoryName")
+    private String categoryName;
     @Column(name="numberOfItemsInCategory")
     private int numberOfItemsInCategory;
-     @OneToMany(mappedBy = "category")
-    private Set<items> items;
 
+    @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "category")
+    private List<category> category;
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public category() {
+    }
+
+    public category(String categoryName, int numberOfItemsInCategory) {
+        this.categoryName = categoryName;
+        this.numberOfItemsInCategory = numberOfItemsInCategory;
+
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public int getNumberOfItemsInCategory() {
+        return numberOfItemsInCategory;
+    }
+
+    public void setNumberOfItemsInCategory(int numberOfItemsInCategory) {
+        this.numberOfItemsInCategory = numberOfItemsInCategory;
+    }
+
+    public List<rest.example.demo.TableModels.category> getItems() {
+        return category;
+    }
+
+    public void setItems(List<rest.example.demo.TableModels.category> categories) {
+        this.category = categories;
+    }
 }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+
 
 @Data
 @Entity
@@ -36,13 +36,16 @@ public class users implements Serializable {
     private String email;
     @Column(name = "date_of_registration")
     private Date date_of_registration;
+    @Column(name="role")
+    private String role;
     public users(){}
-    public users(String username, String password, String email, Date date_of_registration, List<rest.example.demo.TableModels.users> users) {
+    public users(String role,String username, String password, String email, Date date_of_registration, List<rest.example.demo.TableModels.users> users) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.date_of_registration = date_of_registration;
         this.users = users;
+        this.role=role;
     }
     @OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL,mappedBy = "users")
     private List<users> users;
@@ -90,6 +93,27 @@ public class users implements Serializable {
     public void setDate_of_registration(Date date_of_registration) {
         this.date_of_registration = date_of_registration;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsers(List<rest.example.demo.TableModels.users> users) {
+        this.users = users;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "League [id=" + userId + ", email=" + email +",username"+ username+ "]";

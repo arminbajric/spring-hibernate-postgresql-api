@@ -4,6 +4,8 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "items")
@@ -19,20 +21,89 @@ public class items {
     )
     @Id
     @GeneratedValue(generator = "itemsSequenceGenerator")
-    @Column(name = "items_id")
-    private Long items_id;
+    @Column(name = "itemsId")
+    private Long itemsId;
 
-    @Column(name="item_name")
-    private String item_name;
+    @Column(name="itemName")
+    private String itemName;
 
-    @Column(name="item_code",unique = true)
-    private Long item_code;
+    @Column(name="itemCode",unique = true)
+    private Long itemCode;
 
-    @Column(name = "item_description")
-    private String item_description;
-    @Column(name = "item_price")
-    private double item_price;
-    @ManyToOne
-    @JoinColumn(name = "category_id",nullable = false)
+    @Column(name = "itemDescription")
+    private String itemDescription;
+    @Column(name = "itemPrice")
+    private double itemPrice;
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "categoryId",nullable = false)
     private category category;
+    @OneToMany(mappedBy = "items")
+    private List<order_details> order_details;
+
+    public items() {
+    }
+
+    public rest.example.demo.TableModels.category getCategory() {
+        return category;
+    }
+
+    public void setCategory(rest.example.demo.TableModels.category category) {
+        this.category = category;
+    }
+
+    public Long getItemsId() {
+        return itemsId;
+    }
+
+    public void setItemsId(Long itemsId) {
+        this.itemsId = itemsId;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public Long getItemCode() {
+        return itemCode;
+    }
+
+    public void setItemCode(Long itemCode) {
+        this.itemCode = itemCode;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
+    }
+
+    public double getItemPrice() {
+        return itemPrice;
+    }
+
+    public void setItemPrice(double itemPrice) {
+        this.itemPrice = itemPrice;
+    }
+
+    public category getCategoryId() {
+        return category;
+    }
+
+    public void setCategoryId(category categoryId) {
+        this.category = categoryId;
+    }
+
+    public List<rest.example.demo.TableModels.order_details> getOrder_details() {
+        return order_details;
+    }
+
+    public void setOrder_details(List<rest.example.demo.TableModels.order_details> order_details) {
+        this.order_details = order_details;
+    }
 }
