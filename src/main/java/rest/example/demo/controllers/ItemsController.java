@@ -33,6 +33,13 @@ public class ItemsController {
     @RequestMapping(value = "admin/edit-item",method = RequestMethod.POST)
     public ResponseEntity editItem(@RequestParam(name="code")String item_code,@RequestBody items item)
     {
+
+        return ResponseEntity.ok().build();
+    }
+    @RequestMapping(value="admin/delete-item",method = RequestMethod.POST)
+    public ResponseEntity deleteItem(@RequestParam(name="item-code")Long item_code)
+    {
+        itemsService.deleteItem(item_code);
         return ResponseEntity.ok().build();
     }
 }

@@ -46,7 +46,7 @@ public class ItemsServiceImpl implements ItemsService {
 
     @Override
     public List<items> getItem(String item_name) {
-        return itemsRepository.findByItemNameIsLike(item_name);
+        return itemsRepository.findByItemNameStartingWith(item_name);
     }
 
     @Override

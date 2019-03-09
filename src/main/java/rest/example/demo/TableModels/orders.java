@@ -1,6 +1,6 @@
 package rest.example.demo.TableModels;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -36,13 +37,16 @@ public class orders implements Serializable {
     @Column(name="shipped_date")
     private Date shipped_date;
     @OneToMany(mappedBy = "orders")
-    private Set<order_details> order_details;
+    private List<order_details> order_details;
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "userId")
-    @JsonIgnore
+
     private users user;
 
-    public orders(Date orderDate, boolean shipped, Date shipped_date, Set<rest.example.demo.TableModels.order_details> order_details, users user) {
+    public orders() {
+    }
+
+    public orders(Date orderDate, boolean shipped, Date shipped_date, List<rest.example.demo.TableModels.order_details> order_details, users user) {
         this.orderDate = orderDate;
         this.shipped = shipped;
         this.shipped_date = shipped_date;
@@ -82,11 +86,11 @@ public class orders implements Serializable {
         this.shipped_date = shipped_date;
     }
 
-    public Set<rest.example.demo.TableModels.order_details> getOrder_details() {
+    public List<rest.example.demo.TableModels.order_details> getOrder_details() {
         return order_details;
     }
 
-    public void setOrder_details(Set<rest.example.demo.TableModels.order_details> order_details) {
+    public void setOrder_details(List<rest.example.demo.TableModels.order_details> order_details) {
         this.order_details = order_details;
     }
 

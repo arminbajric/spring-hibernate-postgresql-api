@@ -1,7 +1,7 @@
 package rest.example.demo.servicesImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import rest.example.demo.Models.user;
+
 import rest.example.demo.TableModels.users;
 import org.springframework.stereotype.Service;
 import rest.example.demo.TableRepositories.UsersRepository;
@@ -30,5 +30,10 @@ public class UsersServiceImpl implements UserService {
     @Override
     public users checkUserForLogin(String user_email, String password) {
         return usersRepository.findByEmailAndPassword(user_email,password);
+    }
+
+    @Override
+    public users getUser(String email) {
+        return usersRepository.findByEmail(email);
     }
 }
